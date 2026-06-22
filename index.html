@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CineMatch Pro — Cadastre seus filmes favoritos e organize sua videoteca pessoal.">
+  <title>CineMatch Pro — Cadastro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══ Cabeçalho com Navegação ══════════════════ -->
+  <header class="site-header" role="banner">
+    <nav class="container nav-inner" aria-label="Navegação principal">
+      <a href="index.html" class="logo" aria-label="CineMatch Pro — página inicial">
+        <span class="logo-icon" aria-hidden="true">🎬</span>
+        Cine<span>Match</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="index.html" class="active" aria-current="page">
+            <span aria-hidden="true">＋</span> Cadastrar
+          </a>
+        </li>
+        <li>
+          <a href="catalogo.html">
+            <span aria-hidden="true">📽</span> Videoteca
+          </a>
+        </li>
+        <li>
+          <a href="https://www.imdb.com/chart/top/" target="_blank" rel="noopener noreferrer" class="nav-imdb" aria-label="IMDb Top 250 — abre em nova aba">
+            <span aria-hidden="true">⭐</span> Sugestões ↗
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══ Conteúdo Principal ═══════════════════════ -->
+  <main role="main">
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="page-hero" aria-labelledby="hero-title">
+        <span class="eyebrow">Nova entrada</span>
+        <h1 id="hero-title">Cadastrar Filme</h1>
+        <p>Adicione uma obra ao seu catálogo pessoal. Informe o trailer e a capa para uma experiência completa.</p>
+      </section>
+
+      <!-- Layout: formulário + preview -->
+      <section class="form-layout" aria-label="Formulário de cadastro de filme">
+
+        <!-- Formulário principal -->
+        <div class="form-card">
+          <h2>📋 Dados do Filme</h2>
+
+          <form id="form-cadastro" novalidate aria-label="Formulário para cadastrar um novo filme">
+
+            <!-- Título -->
+            <div class="form-group">
+              <label for="titulo">Título *</label>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Ex.: O Poderoso Chefão"
+                autocomplete="off"
+                required
+                aria-required="true"
+              >
+            </div>
+
+            <!-- Ano + Duração -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ano">Ano de lançamento</label>
+                <input
+                  type="number"
+                  id="ano"
+                  name="ano"
+                  placeholder="Ex.: 1972"
+                  min="1888"
+                  max="2099"
+                  aria-describedby="ano-hint"
+                >
+                <span id="ano-hint" style="display:none">Informe o ano de lançamento do filme</span>
+              </div>
+              <div class="form-group">
+                <label for="duracao">Duração (minutos)</label>
+                <input
+                  type="number"
+                  id="duracao"
+                  name="duracao"
+                  placeholder="Ex.: 175"
+                  min="1"
+                  aria-describedby="duracao-hint"
+                >
+                <span id="duracao-hint" style="display:none">Duração total do filme em minutos</span>
+              </div>
+            </div>
+
+            <!-- Gênero + Nota -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="genero">Gênero</label>
+                <select id="genero" name="genero" aria-label="Selecione o gênero do filme">
+                  <option value="">— Selecione —</option>
+                  <option value="Ação">Ação</option>
+                  <option value="Animação">Animação</option>
+                  <option value="Aventura">Aventura</option>
+                  <option value="Biografia">Biografia</option>
+                  <option value="Comédia">Comédia</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Documentário">Documentário</option>
+                  <option value="Fantasia">Fantasia</option>
+                  <option value="Ficção Científica">Ficção Científica</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Musical">Musical</option>
+                  <option value="Noir">Noir</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Suspense">Suspense</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Western">Western</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="nota">Sua nota (1 – 10)</label>
+                <input
+                  type="number"
+                  id="nota"
+                  name="nota"
+                  placeholder="Ex.: 9"
+                  min="1"
+                  max="10"
+                  step="0.5"
+                >
+              </div>
+            </div>
+
+            <!-- Sinopse -->
+            <div class="form-group">
+              <label for="sinopse">Sinopse</label>
+              <textarea
+                id="sinopse"
+                name="sinopse"
+                placeholder="Uma breve descrição da trama…"
+                aria-label="Sinopse do filme"
+              ></textarea>
+            </div>
+
+            <!-- URL da Capa -->
+            <div class="form-group">
+              <label for="capa">URL da capa (imagem)</label>
+              <input
+                type="url"
+                id="capa"
+                name="capa"
+                placeholder="https://exemplo.com/poster.jpg"
+                aria-describedby="capa-dica"
+              >
+              <small id="capa-dica" style="color: var(--clr-muted); font-size: .76rem; margin-top: .35rem; display: block;">
+                Cole o link direto da imagem do pôster (JPEG, PNG ou WebP).
+              </small>
+            </div>
+
+            <!-- URL / ID do Trailer -->
+            <div class="form-group">
+              <label for="trailer">Link do trailer no YouTube</label>
+              <input
+                type="url"
+                id="trailer"
+                name="trailer"
+                placeholder="https://youtu.be/xxxxxxxxxxx"
+                aria-describedby="trailer-dica"
+              >
+              <small id="trailer-dica" style="color: var(--clr-muted); font-size: .76rem; margin-top: .35rem; display: block;">
+                Aceita links padrão, youtu.be ou apenas o ID do vídeo.
+              </small>
+            </div>
+
+            <!-- Botão de envio -->
+            <button type="submit" class="btn btn-primary">
+              🎬 Adicionar ao Catálogo
+            </button>
+
+          </form>
+        </div>
+
+        <!-- Sidebar de preview -->
+        <aside class="preview-sidebar" aria-label="Pré-visualização do filme">
+          <div class="preview-card">
+            <img
+              id="prev-img"
+              src=""
+              alt="Pré-visualização da capa do filme"
+              class="preview-card-img"
+              style="display:none"
+            >
+            <div id="prev-empty" class="preview-empty">
+              <span class="preview-icon" aria-hidden="true">🖼️</span>
+              Preencha o formulário para ver<br>a pré-visualização do card.
+            </div>
+            <div class="preview-card-body">
+              <h3 id="prev-titulo" style="color: var(--clr-muted)">Título do filme</h3>
+              <p id="prev-meta" style="color: var(--clr-muted); font-size: .82rem;">Ano · Gênero · ★ Nota</p>
+            </div>
+          </div>
+
+          <!-- Contador -->
+          <div class="stat-card" style="text-align: center;">
+            <h3>Catálogo atual</h3>
+            <p id="qtd-salvos" style="font-family: var(--font-display); font-size: 1.4rem; color: var(--clr-accent); letter-spacing: .04em;">
+              0 filmes no catálogo
+            </p>
+            <a
+              href="catalogo.html"
+              class="btn btn-primary"
+              style="margin-top: 1rem; display: inline-flex;"
+              aria-label="Ir para a videoteca"
+            >
+              📽 Ver Videoteca
+            </a>
+          </div>
+        </aside>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ══ Toast de notificação ═════════════════════ -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+    <span class="toast-icon" aria-hidden="true">✅</span>
+    <span class="toast-msg">Filme adicionado!</span>
+  </div>
+
+  <!-- ══ Rodapé ════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <p>
+      <strong>CineMatch Pro</strong> — Projeto DEWFE |
+      Desenvolvido para fins acadêmicos — UniSENAI
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>

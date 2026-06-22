@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CineMatch Pro — Sua videoteca pessoal com estatísticas e visualização de trailers.">
+  <title>CineMatch Pro — Videoteca</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══ Cabeçalho com Navegação ══════════════════ -->
+  <header class="site-header" role="banner">
+    <nav class="container nav-inner" aria-label="Navegação principal">
+      <a href="index.html" class="logo" aria-label="CineMatch Pro — página inicial">
+        <span class="logo-icon" aria-hidden="true">🎬</span>
+        Cine<span>Match</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="index.html">
+            <span aria-hidden="true">＋</span> Cadastrar
+          </a>
+        </li>
+        <li>
+          <a href="catalogo.html" class="active" aria-current="page">
+            <span aria-hidden="true">📽</span> Videoteca
+          </a>
+        </li>
+        <li>
+          <a href="https://www.imdb.com/chart/top/" target="_blank" rel="noopener noreferrer" class="nav-imdb" aria-label="IMDb Top 250 — abre em nova aba">
+            <span aria-hidden="true">⭐</span> Sugestões ↗
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══ Conteúdo Principal ═══════════════════════ -->
+  <main role="main">
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="page-hero" aria-labelledby="hero-cat">
+        <span class="eyebrow">Sua coleção</span>
+        <h1 id="hero-cat">Videoteca</h1>
+        <p>Todos os filmes que você catalogou, com estatísticas de tempo de lazer em tempo real.</p>
+      </section>
+
+      <!-- Layout: catálogo + painel lateral -->
+      <div class="catalog-layout">
+
+        <!-- Coluna principal: grid de filmes -->
+        <section aria-labelledby="sec-catalogo">
+          <h2 id="sec-catalogo" class="sr-only">Catálogo de filmes</h2>
+
+          <!-- Controles de busca e filtro -->
+          <div class="catalog-controls" role="search">
+            <div class="search-box">
+              <span class="search-icon" aria-hidden="true">🔍</span>
+              <input
+                type="search"
+                id="busca"
+                placeholder="Buscar por título…"
+                aria-label="Buscar filmes por título"
+                autocomplete="off"
+              >
+            </div>
+            <select
+              id="filtro-genero"
+              class="filter-select"
+              aria-label="Filtrar por gênero"
+            >
+              <option value="">Todos os gêneros</option>
+            </select>
+            <select
+              id="filtro-ordem"
+              class="filter-select"
+              aria-label="Ordenar catálogo"
+            >
+              <option value="recente">Mais recentes</option>
+              <option value="nota-desc">Maior nota</option>
+              <option value="nota-asc">Menor nota</option>
+              <option value="ano-desc">Mais novos</option>
+              <option value="titulo-az">A → Z</option>
+            </select>
+          </div>
+
+          <!-- Grade de cards gerada via JS -->
+          <div
+            id="cards-grid"
+            class="cards-grid"
+            role="list"
+            aria-label="Lista de filmes cadastrados"
+            aria-live="polite"
+          >
+            <!-- Filmes injetados dinamicamente por display.js -->
+          </div>
+        </section>
+
+        <!-- Painel lateral: estatísticas -->
+        <aside class="stats-panel" aria-labelledby="stats-titulo">
+          <h2 id="stats-titulo" class="sr-only">Painel de estatísticas</h2>
+
+          <!-- Total de filmes -->
+          <div class="stat-card">
+            <h3>Total de filmes</h3>
+            <div class="stat-value" id="stat-total" aria-live="polite">0</div>
+            <p class="stat-label">títulos catalogados</p>
+          </div>
+
+          <!-- Tempo total -->
+          <div class="stat-card">
+            <h3>Tempo de lazer</h3>
+            <div class="stat-value" id="stat-horas" aria-live="polite">0h 0min</div>
+            <p class="stat-label">em filmes assistidos</p>
+          </div>
+
+          <!-- Nota média -->
+          <div class="stat-card">
+            <h3>Nota média</h3>
+            <div class="stat-value" id="stat-nota" aria-live="polite">—</div>
+            <p class="stat-label">média das suas avaliações</p>
+          </div>
+
+          <!-- Por gênero -->
+          <div class="stat-card">
+            <h3>Por gênero</h3>
+            <ul
+              id="genre-list"
+              class="genre-list"
+              aria-label="Distribuição de filmes por gênero"
+            >
+              <!-- Preenchido via display.js -->
+            </ul>
+          </div>
+
+          <!-- Link para cadastro -->
+          <a href="index.html" class="btn btn-primary" aria-label="Adicionar novo filme ao catálogo">
+            ＋ Adicionar Filme
+          </a>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ Modal de Trailer ══════════════════════════ -->
+  <div
+    id="modal-overlay"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-titulo"
+    aria-hidden="true"
+  >
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="modal-titulo">Trailer</h2>
+        <button id="btn-fechar-modal" class="btn-close" aria-label="Fechar modal do trailer">✕</button>
+      </div>
+      <div class="modal-video">
+        <iframe
+          id="modal-iframe"
+          src=""
+          title="Trailer do filme"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Rodapé ════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <p>
+      <strong>CineMatch Pro</strong> — Projeto DEWFE |
+      Desenvolvido para fins acadêmicos — UniSENAI
+    </p>
+  </footer>
+
+  <!-- SR only utility -->
+  <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
+  <script src="js/display.js"></script>
+
+</body>
+</html>
